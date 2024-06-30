@@ -1,30 +1,31 @@
 #!/bin/bash
 
-# Function to generate Fibonacci series up to n terms
-fibonacci() {
-  local n=$1
-  local a=0
-  local b=1
-  local next
-
-  echo "Fibonacci series up to $n terms:"
-
-  for (( i=0; i<n; i++ ))
-  do
-    echo -n "$a "
-    next=$((a + b))
-    a=$b
-    b=$next
-  done
-  echo
+# פונקציה להדפיס את סדרת פיבונאצ'י עד למספר נתון
+print_fibonacci() {
+    limit=$1
+    a=0
+    b=1
+    
+    echo -n "סדרת פיבונאצ'י עד $limit: $a"
+    
+    while [ "$b" -le "$limit" ]; do
+        echo -n ", $b"
+        temp=$b
+        b=$((a + b))
+        a=$temp
+    done
+    
+    echo
 }
 
-# Get the number of terms from the user
-read -p "Please enter the number of terms: " number
+# קלט מהמשתמש
+read -p "הכנס מספר: " input
 
-# Check if the input is a valid number
-if [[ "$number" =~ ^[0-9]+$ ]] && [ "$number" -gt 0 ]; then
-  fibonacci $number
-else
-  echo "Invalid input. Please enter a positive integer."
+# בדיקה אם הקלט הוא מספר תקף
+if ! [[ "$input" =~ ^[0-9]+$ ]]; then
+    echo "שגיאה: נא להכניס מספר תקף"
+    exit 1
 fi
+
+# קריאה לפונקציה להדפסת סדרת פיבונאצ'י
+print_fibonacci "$input"
