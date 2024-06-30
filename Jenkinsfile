@@ -15,7 +15,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Validate Input') {
             steps {
                 script {
@@ -51,34 +51,7 @@ pipeline {
                     
                     // Print the Fibonacci series
                     echo "Fibonacci series up to ${numberOfTerms} terms: ${fibonacciSeries.join(', ')}"
-                    
-                    // Create an HTML report
-                    def htmlContent = """
-                    <html>
-                        <head>
-                            <title>Fibonacci Series</title>
-                        </head>
-                        <body>
-                            <h1>Fibonacci series up to ${numberOfTerms} terms</h1>
-                            <p>${fibonacciSeries.join(', ')}</p>
-                        </body>
-                    </html>
-                    """
-                    
-                    writeFile file: 'fibonacci_report.html', text: htmlContent
                 }
-            }
-        }
-
-        stage('Publish HTML Report') {
-            steps {
-                publishHTML([allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: '.',
-                    reportFiles: 'fibonacci_report.html',
-                    reportName: 'Fibonacci Series Report'
-                ])
             }
         }
     }
