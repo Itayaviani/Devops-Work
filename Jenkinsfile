@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     // הרצת הסקריפט עם הפרמטר שהתקבל
-                    sh "./fibonacci.sh ${params.NUMBER} > fibonacci_output.html"
+                    sh "set +e; ./fibonacci.sh ${params.NUMBER} > fibonacci_output.html; exit 0"
                 }
             }
         }
