@@ -6,13 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                // נניח שהסקריפט נמצא במאגר Git
-                git 'https://github.com/your-repo/your-script-repo.git'
-            }
-        }
-
         stage('Make Script Executable') {
             steps {
                 script {
