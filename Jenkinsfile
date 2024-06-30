@@ -12,8 +12,8 @@ pipeline {
         stage('Make Script Executable') {
             steps {
                 script {
-                    // הנח הסקריפט בשם fibonacci.sh במאגר
-                    sh 'chmod +x fibonacci.sh'
+                    // הנח הסקריפט בשם Script.sh במאגר
+                    sh 'chmod +x Script.sh'
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // הרצת הסקריפט עם קלט קבוע מראש
-                    sh './fibonacci.sh <<EOF\n10\nEOF'
+                    sh './Script.sh <<EOF\n10\nEOF'
                 }
             }
         }
